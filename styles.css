@@ -59,18 +59,26 @@ nav {
 
 a {
     text-decoration: none;
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: white;
+    text-decoration: underline;
 }
 
 h5 {
     text-decoration: underline;
 }
 
-#education p {
-text-align: center;}
-
 li {
     list-style-type: none;
     margin-bottom: 10px;
+
 }
 
 #skills h3 {
@@ -91,3 +99,4 @@ section {
     margin-left: auto;
     margin-right: auto;
 }
+
