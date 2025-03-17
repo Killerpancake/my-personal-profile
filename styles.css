@@ -3,7 +3,7 @@ body {
     overflow-x: hidden;  /* Hides horizontal scrolling */
     overflow-y: auto; /* Only scroll if necessary */
     width: 100%;
-    height: 100%;
+    height: auto;
     min-height: 100vh;
     margin: 0;
     padding: 0;
@@ -13,19 +13,20 @@ body {
 
 
 body {
-    font-family: sans-serif;
-    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
     color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .image-overlay {
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: absolute;
     background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -44,14 +45,14 @@ h2 {
 }
 
 p {
-    color: #F5F5DC;
+    color: #333332;
 }
 
 nav {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
-    background-color: #0f0f0f83;
+    background-color: #4e4e4ea7;
     text-decoration-color: #f5f5f5;
 }
 
@@ -62,7 +63,7 @@ footer {
     background-color: #0f0f0f;
     color: #f5f5f5;
     text-align: center;
-    padding: 10px;
+    padding: 34px;
 }
 
 #about {
@@ -163,13 +164,15 @@ section {
 }
 
 .container {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(3, 1fr);
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     text-align: center;
     grid-gap: 1rem;
     padding: 1rem 80px;
+    width: 100%;
 }
 
 .skill-box {
@@ -259,6 +262,7 @@ section {
 img {
     max-width: 100%;
     height: auto;
+    object-fit: cover;
 }
 
 .img img {
@@ -439,4 +443,161 @@ button:hover {
     .contact-wrapper {
         grid-template-columns: 1fr;
     }
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+        padding: 1rem 40px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Single column for small screens */
+        padding: 1rem 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column; /* Stack form and contact info */
+        gap: 20px;
+    }
+
+    .contact-form, .contact-info {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    form {
+        width: 90%;
+    }
+}
+
+/* Dark mode */
+body.dark-mode {
+    background-color: #121212;  /* Darker background for better contrast */
+    color: #e0e0e0;  /* Soft white text for readability */
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #f8f9fa; /* Light mode navbar */
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .navbar {
+    background-color: #1e1e1e; /* Dark mode navbar */
+}
+
+/* Card or Section Backgrounds */
+.card, .section {
+    background-color: #ffffff;
+    color: #333;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .card, body.dark-mode .section {
+    background-color: #1e1e1e; /* Darker background for cards */
+    color: #e0e0e0;
+    box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Button Styles */
+#darkModeToggle {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode #darkModeToggle {
+    background-color: #ffcc00; /* Yellow for contrast */
+    color: #333;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode a {
+    color: #ffcc00;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #f8f9fa;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .footer {
+    background-color: #181818;
+    color: #e0e0e0;
+}
+
+/* Form Fields */
+input, textarea {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode input, body.dark-mode textarea {
+    background-color: #262626;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+/* General overlay for dark mode */
+.dark-overlay {
+    position: fixed;  /* Covers the whole screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0); /* Semi-transparent black */
+    z-index: 10; /* Ensures it appears above content */
+    pointer-events: none; /* Allows interaction with underlying elements */
+    transition: background 0.3s ease;
+}
+
+/* Dark mode overlay effect */
+body.dark-mode .dark-overlay {
+    background: rgba(0, 0, 0, 0.2); /* Slightly darker for dark mode */
+}
+
+/* Ensure content is still visible */
+body.dark-mode .content {
+    position: relative;
+    z-index: 11;
+}
+
+/* Navigation Links - Dark Mode */
+body.dark-mode nav a {
+    color: #ffe134; /* Light blue links for readability */
+}
+
+/* Paragraphs - Dark Mode */
+body.dark-mode p {
+    color: #ffffff; /* Slightly off-white for comfortable reading */
+}
+
+/* Headings - Dark Mode */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3 {
+    color: #ffffff; /* Brighter white for headings */
+}
+
+/* Ensure smooth transition */
+* {
+    transition: background 0.3s ease, color 0.3s ease;
 }
