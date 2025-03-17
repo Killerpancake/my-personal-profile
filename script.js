@@ -1,35 +1,31 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const toggleButton = document.getElementById("darkModeToggle");
-    const body = document.body;
+// script.js
 
-    if (!toggleButton) {
-        console.error("Dark mode toggle button not found!");
-        return;
-    }
-
-    function enableDarkMode() {
-        body.classList.add("dark-mode");
-        localStorage.setItem("dark-mode", "enabled");
-        toggleButton.textContent = "Light Mode";
-    }
-
-    function disableDarkMode() {
-        body.classList.remove("dark-mode");
-        localStorage.setItem("dark-mode", "disabled");
-        toggleButton.textContent = "Dark Mode";
-    }
-
-    if (localStorage.getItem("dark-mode") === "enabled") {
-        enableDarkMode();
+// Function to enable dark mode
+function enableDarkMode() {
+    document.body.classList.add('dark-mode');
+    localStorage.setItem('darkMode', 'enabled');
+  }
+  
+  // Function to disable dark mode
+  function disableDarkMode() {
+    document.body.classList.remove('dark-mode');
+    localStorage.setItem('darkMode', 'disabled');
+  }
+  
+  // Check for saved user preference
+  const savedDarkMode = localStorage.getItem('darkMode');
+  
+  if (savedDarkMode === 'enabled') {
+    enableDarkMode();
+    document.getElementById('darkModeToggle').checked = true;
+  }
+  
+  // Toggle dark mode on checkbox change
+  document.getElementById('darkModeToggle').addEventListener('change', function() {
+    if (this.checked) {
+      enableDarkMode();
     } else {
-        disableDarkMode();
+      disableDarkMode();
     }
-
-    toggleButton.addEventListener("click", function () {
-        if (body.classList.contains("dark-mode")) {
-            disableDarkMode();
-        } else {
-            enableDarkMode();
-        }
-    });
-});
+  });
+  
